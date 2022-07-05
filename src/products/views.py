@@ -11,12 +11,12 @@ def index(request):
     categories = Category.objects.all()
     if q :
         products = Product.objects.filter(available=True , category__slug=q)
-        paginator = Paginator(products , 2)
+        paginator = Paginator(products , 25)
         page_number = request.GET.get('page')
         products = paginator.get_page(page_number)
     else:
         products = Product.objects.filter(available=True)
-        paginator = Paginator(products , 2)
+        paginator = Paginator(products , 25)
         page_number = request.GET.get('page')
         products = paginator.get_page(page_number)
     cart_product_form = CartAddProductForm()
